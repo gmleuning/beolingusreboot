@@ -1,0 +1,192 @@
+body{font-family:Arial, Helvetica, SunSans-Regular, Sans-Serif;background-color:#fff;color:#000;scrollbar-base-color:#589E92;scrollbar-3d-light-color:#7BB58B;scrollbar-arrow-color:#000;scrollbar-darkshadow-color:#7BB58B;scrollbar-face-color:#E8F2D9;scrollbar-highlight-color:#E8F2D9;scrollbar-shadow-color:#E8F2D9;scrollbar-track-color:#589E92;margin:0;padding:0;}
+a{text-decoration:none;}
+a:link{color:#3F9687;}
+a:visited{color:#048;}
+a:active{color:#0f0;}
+a[name]{color:inherit;text-decoration:inherit;}
+textarea{font-family:Sans-Serif;}
+input.text,input.calc,textarea,input.mini{border:solid #589E92 1px;}
+h1{font-size:150%;}
+h2{font-size:120%;}
+div.logo{position:absolute;width:119px;height:125px;padding-left:5px;padding-top:3px;left:0;top:2px;z-index:10;margin:0;}
+td#header{background-color:#C6E09F;vertical-align:middle;}
+td#header div{width:530px;color:#589E93;text-align:center;font-size:70%;letter-spacing:1px;}
+td#header a,td#footer a{color:#589E93;text-decoration:none;}
+td#headerlogo div{width:246px;height:51px;background:url(/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/header.gif) top right no-repeat;}
+td#footer{padding-top:1em;color:#589E93;text-align:right;font-size:70%;letter-spacing:1px;}
+div.headermenu{height:18px;margin-top:0;}
+ul.headermenu{margin:0 0 0 auto;padding:0;}
+ul.headermenu li{list-style:none;display:inline;}
+ul.headermenu a,ul.headermenu span{float:right;height:16px;text-decoration:none;text-align:left;letter-spacing:1px;font-size:70%;border:0;border-left:solid 2px #fff;color:#fff;background-color:#8DBD99;z-index:1;padding:2px 6px;}
+* html ul.headermenu a,* html ul.headermenu span,* html ul.headermenu select{zwidth:105px;}
+ul.headermenu a:hover,ul.headermenu span,ul.headermenu select:hover{z-index:10;color:#fff;background-color:#529868;}
+ul.headermenu select{float:right;height:18px;text-decoration:none;text-align:left;letter-spacing:1px;font-size:70%;border:0;border-left:solid 2px #fff;color:#fff;background-color:#8DBD99;z-index:1;}
+a.headermenu,select.headermenu{border:0;color:#fff;background-color:#8DBD99;text-decoration:none;}
+a.headermenu:hover,select.headermenu:hover,select.headermenu option{background-color:#529868;}
+option[value=de]:before{content:url("/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/de.png");}
+option[value=en]:before{content:url("/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/en.png");}
+option[value=es]:before{content:url("/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/es.png");}
+div.googlestart{width:120px;height:100px;background-color:#fff;}
+div.googleother{margin-top:60px;height:240px;background-color:#DAEAC2;}
+div.google2other{margin-top:10px;width:120px;height:90px;background-color:#DAEAC2;}
+td.space div{width:12px;}
+table.title,table.title tr,table.title td{text-align:center;vertical-align:middle;margin-bottom:-10px;}
+h1.title{vertical-align:middle;color:#589E92;}
+td.o,td.o div{background-color:#589E92;height:24px;color:#fff;font-size:100%;vertical-align:middle;}
+td.o a{color:#fff;display:block;}
+div.lostart{width:16px;background:url(/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/cw_lo.gif) top left no-repeat;}
+div.loother{width:16px;background:url(/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/cc_lo.gif) top left no-repeat;}
+div.alostart,div.aloother{width:16px;background:url(/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/cca_lo.gif) top left no-repeat;}
+div.rostart{width:16px;background:url(/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/cw_ro.gif) top right no-repeat;}
+div.roother{width:16px;background:url(/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/cc_ro.gif) top right no-repeat;}
+div.arostart,div.aroother{width:16px;background:url(/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/cca_ro.gif) top right no-repeat;}
+.contentstart{background-color:#DAEAC2;font-size:80%;text-align:center;}
+.contentother{background-color:#fff;text-align:center;}
+td.contentspace div{width:10px;}
+div.content{background-color:#fff;padding:0 1em 1em;}
+span.h{padding-left:.5em;padding-right:.5em;background-color:#DAEAC2;}
+table#result span.h{padding:0;}
+a.contentmenu,select.in,select.s{text-decoration:none;letter-spacing:1px;font-size:70%;border:0;color:#fff;background-color:#589E92;margin:0;}
+a.contentmenu{width:90px;float:left;height:16px;padding:2px 4px;}
+select.in{width:90px;padding:0;}
+select.s{width:180px;padding:0;}
+select.m{width:5em;border:solid #589E92 1px;padding:0;}
+span.contentmenu{float:left;width:90px;height:16px;text-decoration:none;letter-spacing:1px;font-size:70%;border:0;color:#589E92;margin:0;padding:2px 4px;}
+span.contentselected{float:left;width:90px;height:16px;text-decoration:none;letter-spacing:1px;font-size:70%;border:0;color:#fff;background-color:#055;margin:0;padding:2px 4px;}
+div.wordstart{color:#589E92;font-size:110%;letter-spacing:1px;background-color:#DAEAC2;position:relative;background-image:url(/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/katusche6.gif);background-repeat:no-repeat;background-position:110px 0;height:80px;width:500px;margin-top:10px;margin-bottom:0;}
+div.wordother{color:#589E92;font-size:110%;letter-spacing:1px;background-color:#fff;position:relative;background-image:url(/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/katusche6.gif);background-repeat:no-repeat;background-position:110px 0;height:80px;width:500px;margin-top:10px;margin-bottom:0;}
+div#sugg{border-left:2px solid #589E92;border-right:2px solid #589E92;border-bottom:2px solid #589E92;position:absolute;top:-37px;left:124px;width:260px;background-color:#fff;font-size:90%;}
+.close{background:url(/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/wclose.png) 2px no-repeat;}
+.plus{background:url(/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/wplus.png) 2px no-repeat;}
+.aopen{background:url(/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/aopen.png) 2px no-repeat;}
+div#sugg a{color:#000;display:block;padding:.1em .2em .1em 25px;}
+.sugg_en{background:url(/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/en.png) 2px no-repeat;}
+.sugg_de{background:url(/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/de.png) 2px no-repeat;}
+.sugg_es{background:url(/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/es.png) 2px no-repeat;}
+.sugg_pt{background:url(/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/pt.png) 2px no-repeat;}
+div.az{width:32%;float:left;margin-left:1%;margin-top:1em;}
+table.az a{color:#000;padding:.1em .2em .1em 25px;}
+input#query{border:0 none;border-bottom:1px dotted;position:absolute;top:10px;left:135px;width:245px;outline:none;font-size:120%;background-color:#fff;color:#000;}
+input.wordstart{border:0 none;position:absolute;background-color:#589E92;top:55px;background-image:url(/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/button.gif);height:21px;width:88px;color:#FFF;font-size:80%;font-weight:700;letter-spacing:1px;padding-bottom:1px;}
+input.wordother{border:0 none;position:absolute;background-color:#589E92;top:55px;background-image:url(/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/button2.gif);height:21px;width:88px;color:#FFF;font-size:80%;font-weight:700;letter-spacing:1px;padding-bottom:1px;}
+input#search{left:240px;}
+input#delete{left:370px;}
+input.action{border:0 none;background-color:#589E92;background-image:url(/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/button2.gif);height:21px;width:88px;color:#FFF;font-size:80%;font-weight:700;padding-bottom:1px;}
+input.titlebuttonS{border:0 none;position:absolute;top:1px;background-image:url(/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/button_s.gif);background-color:#DAEAC2;color:#589E92;height:14px;width:90px;font-size:70%;letter-spacing:1px;text-align:center;padding-bottom:2px;}
+input.umlautstart{border:0 none;position:absolute;top:1px;background-image:url(/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/button3.gif);background-color:#589E92;height:17px;width:17px;color:#FFF;font-size:80%;letter-spacing:1px;text-align:center;padding-bottom:2px;}
+a.uml{padding-left:.3em;padding-right:.3em;}
+a.uml:hover{background-color:#589E92;color:#fff;}
+input.umlautother{border:0 none;position:absolute;top:1px;background-image:url(/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/button4.gif);background-color:#589E92;height:17px;width:17px;color:#FFF;font-size:80%;letter-spacing:1px;text-align:center;padding-bottom:2px;}
+input.umlautstart:hover,input.umlautother:hover,input.wordstart:hover,input.wordother:hover,input.action:hover{background-color:#055;}
+input.word{border:0 none;position:absolute;top:3px;background-image:url(/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/button3.gif);background-color:#fff;height:17px;width:17px;color:#FFF;font-size:70%;letter-spacing:1px;font-weight:700;text-align:center;padding-bottom:2px;}
+input.word:hover{background-image:url(/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/button4.gif);}
+input#oe{left:425px;padding-left:1px;}
+input#ue{left:445px;padding-left:1px;}
+input#ae{left:405px;padding-left:1px;}
+input#ss{left:465px;padding-left:1px;}
+input#aa{left:485px;padding-left:1px;}
+input#ea{top:30px;left:405px;padding-left:1px;}
+input#ia{top:30px;left:425px;padding-left:1px;}
+input#nt{top:30px;left:445px;padding-left:1px;}
+input#oa{top:30px;left:465px;padding-left:1px;}
+input#ua{top:30px;left:485px;padding-left:1px;}
+input#buttonW{top:-83px;right:0;padding-left:1px;}
+input#buttonS{top:-83px;right:140px;padding-left:1px;}
+div.result{min-height:5em;}
+div#dresult0{background-color:#fff;overflow:auto;border-top:solid 1px #DAEAC2;z-index:1;}
+div#dresult1{background-color:#fff;border-top:solid 1px #DAEAC2;z-index:1;}
+div.result table{width:100%;font-size:90%;}
+div.content table{width:96%;font-size:90%;margin-top:5px;}
+div.result th{width:50%;text-align:left;padding-left:10px;font-size:120%;font-weight:700;background-color:#DAEAC2;letter-spacing:.04em;}
+table#result tr{border-left:solid 2px #fff;border-right:solid 2px #fff;}
+table#result td{vertical-align:top;}
+tr.s1:hover,tr.s2:hover,tr.s1hover,tr.s2hover,tr.chover{background-color:#ddd;}
+td.sp{padding-top:.5em;padding-bottom:.5em;}
+div.result ul{margin:-10px;}
+td.r{padding-left:1em;}
+td.f{padding-left:2em;}
+div.mini td.r{padding-left:.5em;}
+div.mini td.f{padding-left:1.2em;}
+div.mini th{width:50%;text-align:left;font-size:120%;font-weight:700;background-color:#DAEAC2;}
+td.b{font-weight:700;}
+td.comment{text-align:center;vertical-align:top;color:#FFF;}
+div.comment{color:#FFF;font-size:90%;margin:1px;}
+textarea.comment,input.comment{border:0 none;font-size:90%;color:#000;background-color:#fff;margin:1px;}
+textarea.comment{width:100%;overflow:auto;}
+input.send,input.new{border:0 none;height:16px;color:#589E92;font-size:80%;text-align:center;padding-bottom:1px;background-color:#DAEAC2;float:left;margin:2px;}
+input.send{width:65px;background-image:url(/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/button5.gif);}
+input.new{width:130px;background-image:url(/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/button_w.gif);}
+td.u{background-color:#589E92;height:24px;text-align:center;}
+div.lustart{width:16px;height:24px;background:url(/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/cw_lu.gif) bottom left no-repeat;}
+div.luother{width:16px;height:24px;background:url(/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/cc_lu.gif) bottom left no-repeat;}
+div.rustart{width:16px;height:24px;background:url(/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/cw_ru.gif) bottom right no-repeat;}
+div.ruother{width:16px;height:24px;background:url(/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/cc_ru.gif) bottom right no-repeat;}
+a.copyrightstart{font-size:80%;letter-spacing:1px;margin-top:10px;text-decoration:none;color:#2E8677;background-color:#DAEAC2;}
+a.copyrightother{font-size:80%;letter-spacing:1px;margin-top:10px;text-decoration:none;color:#2E8677;}
+td.ads{vertical-align:top;width:140px;}
+div.adsstart{width:130px;height:100px;background-color:#FFF;}
+div.adsother{margin-top:4em;width:130px;height:400px;color:#589E92;font-size:13px;letter-spacing:1px;background-color:#DAEAC2;padding-left:2px;}
+div.adsother img,div.adsother embed,div.adsother object{margin:0 0 .5em;}
+div.ads a,a.ads{text-decoration:none;font-size:12px;color:#09008b;}
+a.adstitle{font-size:11px;color:#000;display:block;}
+div.ads{margin-bottom:1em;}
+.pron{color:#009;}
+table.pronuncation a{text-decoration:none;color:#589E92;font-size:80%;}
+td.ad{padding-top:15px;}
+tr.air,tr.air div,td.air div,td.air{width:10px;height:15px;}
+tr.pronhead,tr.pronhead div,td.pronhead div,td.pronhead{width:10px;height:15px;background-color:#C6E09F;}
+tr.main,div.main{background-color:#C6E09F;}
+div.mini table{clear:left;font-size:80%;}
+.ex{margin-left:2em;padding-left:.5em;padding-right:.5em;background-color:#DAEAC2;}
+span#wm{z-index:1000;visibility:hidden;border:1px solid #589E92;border-right:2px solid #055;border-bottom:2px solid #055;font-weight:400;background-color:#eee;width:20em;overflow:hidden;position:absolute;left:0;top:1.1em;}
+span#wm a{color:#000;display:block;text-decoration:none;background-repeat:no-repeat;background-position:2px;padding:.2em .5em .2em 25px;}
+span#wmb{position:relative;}
+a.hl{background-color:#DAEAC2;border:1px solid #589E92;border-bottom:0;}
+div.wmh{background-color:#DAEAC2;font-weight:700;margin:0;padding:0 .2em!important;}
+div.wmh a{display:block;}
+div#inline_more{visibility:hidden;background-color:#eee;position:absolute;border:1px solid #589E92;border-right:2px solid #055;border-bottom:2px solid #055;width:0;height:0;z-index:1500;}
+div#inline_more a{background-color:#DAEAC2;font-weight:700;color:#000;display:block;text-decoration:none;margin:0;padding:0 .2em;}
+div#pos{background-color:#fff;font-size:90%;font-weight:700;margin:.5em 1em 0;padding:.3em;}
+div#pos a{border-top-left-radius:1em;border-top-right-radius:1em;-moz-border-radius-topleft:1em;-moz-border-radius-topright:1em;-webkit-border-top-left-radius:1em;-webkit-border-top-right-radius:1em;outline:none;margin:0 .5em;padding:.3em 1em;}
+a.pos_sh{background-color:#DAEAC2;border:solid #589E92 2px;border-bottom:0;}
+a.pos_ns{background-color:#fff;border:solid #DAEAC2 2px;border-bottom:0;}
+div.mini div#pos{margin:.3em 0 0;}
+div.mini div#pos a{margin:0;padding:.3em;}
+div.mobileinfo{font-size:200%;font-weight:700;background-color:#DAEAC2;width:100%;text-align:center;}
+div.mobileinfo a{display:block;padding:1em;}
+p.recom{background:url(/web/20170823002223im_/http://dict.tu-chemnitz.de/pics/recom.png) 0 4px no-repeat;padding:0 0 1em 90px;}
+div.ESL-Links{font-family:Trebuchet MS,Sans-Serif;font-size:11px;letter-spacing:0;background-repeat:no-repeat;background-image:url(https://web.archive.org/web/20170823002223im_/http://fb.eslcompany.com/img/ESL-DE_Beolingus.jpg);width:120px;margin:0;padding:40px 8px 15px;}
+body#other,a.h,th.head,div#sugg a:hover,div#sugg .over,tr.hi,a.pos_ns:hover{background-color:#DAEAC2;}
+a:hover,td#header a:hover,td#footer a:hover{color:#055;}
+input.text,input.calc,textarea,select,span#wm a:hover{background-color:#DAEAC2;color:#000;}
+div.logo img,div.result img,div.content img,a.ads img,td.ad img,div#inline_more iframe{border:0;}
+td.headermenuleft,td.headermenu{background-color:#8DBD99;}
+ul.headermenu a:visited,td.o a:visited,a.contentmenu:visited{color:#fff;}
+table.content,table.contentmenu{margin-top:10px;}
+td.oaother,td.oaother div,td.oastart,td.oastart div{background-color:#055;color:#fff;font-size:100%;font-weight:700;height:24px;letter-spacing:1px;vertical-align:middle;}
+td.o a:hover,a.contentmenu:hover,select.in:hover,select.s:hover,select.m:hover,select.s option,select.in option,input.titlebuttonS:hover,input.send:hover,input.new:hover{background-color:#055;color:#fff;}
+td.contentspace,tr.s2{background-color:#fff;}
+a.uml:visited,div.result a:hover,a#help:hover,div.mini a:hover{color:#589E92;}
+tbody.collapsed tr.c,tbody.poscollapsed{display:none;}
+div.result a,a#help,div.mini a{color:#000;}
+td.tip a,a.copyrightstart:visited,a.copyrightother:visited,a.mini{color:#2E8677;}
+/*
+     FILE ARCHIVED ON 00:22:23 Aug 23, 2017 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 04:05:15 Oct 29, 2026.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  captures_list: 0.564
+  exclusion.robots: 0.09
+  exclusion.robots.policy: 0.079
+  esindex: 0.009
+  cdx.remote: 7.662
+  LoadShardBlock: 110.57 (3)
+  PetaboxLoader3.datanode: 569.14 (4)
+  PetaboxLoader3.resolve: 68.174 (3)
+  load_resource: 531.451
+*/

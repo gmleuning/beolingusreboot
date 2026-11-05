@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BEOLINGUS · German ↔ English</title>
+<!--FAVICON-->
+<style>
+/* colour scheme — taken from the old dict.tu-chemnitz.de main.css */
+:root{
+  --page:#ffffff; --ink:#000000; --link:#0000ff;
+  --band:#daeac2;        /* header band / sidebar green */
+  --band-ink:#141414;
+  --rule:#b9cf98;
+  --s1:#eeeeee; --s2:#ffffff;
+  --sub:#464646;         /* sub-line text */
+  --tag:#777777;
+  --hit:#000000;
+  --btn:#f4f8ec; --btn-border:#9fb87a;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--page);color:var(--ink)}
+body{font:14px/1.45 Verdana,Arial,Helvetica,sans-serif}
+a{color:var(--link)}
+header{background:var(--band);color:var(--band-ink);border-bottom:1px solid var(--rule)}
+.top{max-width:1180px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.logo{display:block;line-height:0}
+.logo img{width:72px;height:auto}
+.brand{min-width:150px}
+.brand b{display:block;font-size:20px;letter-spacing:.06em}
+.brand span{font-size:12px}
+form{display:flex;align-items:center;gap:6px;flex:1 1 420px;flex-wrap:wrap}
+#query{flex:1 1 260px;min-width:0;font:inherit;font-size:16px;padding:5px 8px;border:1px solid var(--btn-border);background:#fff;color:#000}
+#query:focus{outline:2px solid var(--btn-border);outline-offset:-1px}
+.uml{display:flex;gap:2px}
+.uml button,.btn{font:inherit;font-size:13px;background:var(--btn);border:1px solid var(--btn-border);color:var(--band-ink);cursor:pointer;padding:4px 8px}
+.uml button{padding:4px 6px;min-width:26px}
+.btn:hover,.uml button:hover{background:#fff}
+main{max-width:1180px;margin:0 auto;padding:10px 16px 60px}
+.info{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;margin:4px 0 8px}
+.count{font-weight:bold}
+#pos{font-size:13px}
+#pos a{margin-right:10px;text-decoration:none}
+#pos a.on{color:var(--ink);font-weight:bold}
+#pos a span{color:var(--tag)}
+table#result{width:100%;border-collapse:collapse;table-layout:fixed}
+#result th{text-align:left;font-size:13px;padding:4px 8px;border-bottom:2px solid var(--rule)}
+#result td{vertical-align:top;padding:3px 8px;width:50%;word-wrap:break-word}
+tbody.s1{background:var(--s1)} tbody.s2{background:var(--s2)}
+tbody tr:first-child td{padding-top:6px}
+tbody tr:last-child td{padding-bottom:6px}
+td.f{font-size:12.5px;color:var(--sub);padding-left:22px!important}
+td.r,td.f{cursor:pointer}
+b{color:var(--hit)}
+.g{color:var(--tag);font-size:.92em}
+.t{color:var(--tag);font-size:.92em}
+.more{display:block;margin:14px auto;font:inherit;font-size:13px}
+.note{color:var(--sub);max-width:680px}
+.note code{background:var(--s1);padding:0 4px}
+footer{max-width:1180px;margin:0 auto;padding:0 16px 24px;font-size:11px;color:var(--tag)}
+@media (max-width:640px){
+  #result td{display:block;width:auto} #result thead{display:none}
+  #result td+td{padding-top:0!important}
+  td.f{padding-left:16px!important}
+}
+</style>
+</head>
+<body>
+<header><div class="top">
+  <a class="logo" href="#" title="BEOLINGUS"><img src="/*__LOGO__*/" alt="" onerror="this.parentNode.remove()"></a>
+  <div class="brand"><b>BEOLINGUS</b><span>Deutsch ↔ English</span></div>
+  <form id="f" autocomplete="off">
+    <input id="query" type="search" accesskey="q" spellcheck="false" autofocus placeholder="Wort / word">
+    <div class="uml"><button type="button">ä</button><button type="button">ö</button><button type="button">ü</button><button type="button">ß</button></div>
+    <input class="btn" type="submit" value="search" accesskey="l">
+    <input class="btn" type="button" id="clear" value="clear" title="Esc">
+  </form>
+</div></header>
+<main id="out"><p class="note">Loading dictionary…</p></main>
+<footer id="foot"></footer>
+<script src="beolingus-data.js"></script>
+<script>
+"use strict";
+const $=s=>document.querySelector(s);
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const PAGE=100;
+
+// ---------- abbreviations (tooltips) ----------
+const ABBR={'{f}':'noun, feminine (die)','{m}':'noun, masculine (der)','{n}':'noun, neuter (das)','{pl}':'noun, plural (die)',
+'{m,f}':'noun, masculine or feminine','{m,n}':'noun, masculine or neuter','{n,m}':'noun, neuter or masculine','{f,n}':'noun, feminine or neuter',
+'{adj}':'adjective','{adv}':'adverb','{vt}':'verb, transitive','{vi}':'verb, intransitive','{vr}':'verb, reflexive','{v}':'verb',
+'{interj}':'interjection','{num}':'numeral','{pron}':'pronoun','{ppron}':'personal pronoun','{conj}':'conjunction','{prp}':'preposition',
+'{art}':'article','{+Gen.}':'+ genitive','{+Dat.}':'+ dative','{+Akk.}':'+ accusative',
+'[Am.]':'American English','[Br.]':'British English','[Austr.]':'Australian English','[Sc.]':'Scottish English','[Ös.]':'Austrian German','[Schw.]':'Swiss German',
+'[BW]':'Baden-Württemberg','[Bayr.]':'Bavarian','[Norddt.]':'Northern German','[Süddt.]':'Southern German','[Westdt.]':'Western German','[Ostdt.]':'Eastern German','[Mittelwestdt.]':'Western Central German',
+'[ugs.]':'colloquial','[coll.]':'colloquial','[slang]':'slang','[vulg.]':'vulgar','[pej.]':'pejorative','[geh.]':'formal','[formal]':'formal','[poet.]':'poetic','[lit.]':'literary',
+'[humor.]':'humorous','[iron.]':'ironic','[übtr.]':'figurative','[fig.]':'figurative','[obs.]':'obsolete','[veraltet]':'obsolete','[old-fashioned]':'old-fashioned','[rare]':'rare','[selten]':'rare',
+'[sport]':'sports','[techn.]':'engineering','[med.]':'medicine','[chem.]':'chemistry','[bot.]':'botany','[zool.]':'zoology','[ornith.]':'ornithology','[geogr.]':'geography','[geol.]':'geology',
+'[econ.]':'economy','[fin.]':'finance','[comp.]':'computing; EDP; informatics','[math.]':'mathematics','[phys.]':'physics','[jur.]':'law','[pol.]':'politics','[relig.]':'religion',
+'[mus.]':'music','[art]':'arts','[cook.]':'cooking; gastronomy','[agr.]':'agriculture','[arch.]':'architecture','[constr.]':'construction','[electr.]':'electrical engineering, electronics',
+'[aviat.]':'aviation; aircraft','[naut.]':'nautical science; seafaring','[mil.]':'military','[min.]':'mineralogy; mining','[soc.]':'sociology; social life','[telco.]':'telecommunications',
+'[ling.]':'linguistics','[philos.]':'philosophy','[psych.]':'psychology','[hist.]':'history','[anat.]':'anatomy','[biol.]':'biology','[pharm.]':'pharmacology','[envir.]':'environment',
+'[auto]':'automotive engineering','[transp.]':'transport','[textil.]':'textiles','[print]':'printing','[photo.]':'photography','[astron.]':'astronomy','[adm.]':'administration',
+'[school]':'school','[stud.]':'university','[mach.]':'mechanical engineering','[mineral.]':'mineralogy','[meteo.]':'meteorology','[statist.]':'statistics','[insur.]':'insurance',
+'[pol.]':'politics','[ling.]':'linguistics','[sociol.]':'sociology','[cloth.]':'clothing','[ichth.]':'ichthyology','[entom.]':'entomology','[agr.]':'agriculture','[ecol.]':'ecology',
+'[film]':'film','[lit.]':'literature','[theat.]':'theatre','[tourism]':'tourism','[zool.]':'zoology','[biochem.]':'biochemistry','[electr.]':'electrical engineering'};
+
+// ---------- load ----------
+let RAW='', LOW='', OFF=null, NL=0, VERSION='';
+function init(text){
+  RAW=text.replace(/\r\n?/g,'\n');
+  if(!RAW.endsWith('\n')) RAW+='\n';
+  LOW=RAW.toLowerCase();
+  if(LOW.length!==RAW.length){           // keep positions aligned if some letter lowercases to 2 chars
+    let o=''; for(const c of RAW){ const l=c.toLowerCase(); o+= l.length===c.length?l:c; } LOW=o;
+  }
+  const off=[0]; let p=-1;
+  while((p=RAW.indexOf('\n',p+1))!==-1) off.push(p+1);
+  OFF=Int32Array.from(off); NL=off.length-1;
+  const v=RAW.match(/^# Version:?:?\s*(.+)$/m); VERSION=v?v[1].trim():'';
+  const st=RAW.match(/^# Stats:?:?\s*(.+)$/m);
+  $('#foot').innerHTML=`Dictionary data: BEOLINGUS / Ding, © Frank Richter, TU Chemnitz, GNU General Public License.${VERSION?' Version '+esc(VERSION)+'.':''}${st?' '+esc(st[1]):' '+NL.toLocaleString()+' lines.'}`;
+  window.addEventListener('hashchange',route); route();
+}
+function noData(){
+  $('#out').innerHTML=`<div class="note"><p><b>Dictionary file not found.</b></p>
+<p>Put <code>beolingus-data.js</code> in the same folder as this page. Make it by running <code>py build_beolingus.py</code> in the folder that holds <code>chemnitz_beolingus_de-en.txt</code>.</p>
+<p>Or load the .txt directly for this session: <input type="file" id="pick" accept=".txt"></p></div>`;
+  $('#pick').addEventListener('change',ev=>{ const f=ev.target.files[0]; if(!f) return;
+    $('#out').innerHTML='<p class="note">Reading file…</p>'; f.text().then(init); });
+}
+
+// ---------- search ----------
+const isW=c=>c!==undefined&&/[\p{L}\p{N}]/u.test(c);
+function cleanItem(s){
+  return s.replace(/\{[^}]*\}|\[[^\]]*\]|\([^)]*\)|\/[^\/]*\//g,' ').replace(/\s+/g,' ').trim()
+          .replace(/^(to|sich|etw\.|jdn\.|jdm\.|sth\.|sb\.)\s+/,'').replace(/\s+(sth\.|sb\.|etw\.|jdn\.|jdm\.)$/,'');
+}
+// tier of one occurrence inside a piece: 0 exact item, 1 whole word, 2 word start, 3 inside a word
+function tierOf(pieceLow,pos,q){
+  const pre=pieceLow[pos-1], post=pieceLow[pos+q.length];
+  if(isW(pre)) return 3;
+  if(isW(post)) return 2;
+  // whole word: is the whole item equal?
+  let a=pieceLow.lastIndexOf('; ',pos); a=a<0?0:a+2;
+  let b=pieceLow.indexOf('; ',pos); b=b<0?pieceLow.length:b;
+  return cleanItem(pieceLow.slice(a,b))===q?0:1;
+}
+function posClass(de){
+  const m=de.match(/\{(m|f|n|pl|m,f|m,n|n,m|f,n|f,m|vt|vi|vr|v|adj|adv)\}/);
+  if(!m) return 'o';
+  const t=m[1];
+  return t[0]==='v'?'v':t==='adj'?'a':t==='adv'?'d':'n';
+}
+function lineText(i){ return RAW.slice(OFF[i],OFF[i+1]-1); }
+
+function search(q){
+  const ql=q.toLowerCase().replace(/\s+/g,' ').trim();
+  const res=new Map();               // line -> {score, rows:Set}
+  if(!ql) return [];
+  let p=-1, line=0, guard=0;
+  while((p=LOW.indexOf(ql,p+1))!==-1){
+    while(OFF[line+1]<=p) line++;
+    if(RAW.charCodeAt(OFF[line])===35) continue;      // '#' header lines
+    if(!res.has(line)) res.set(line,null);
+    p=OFF[line+1]-1;                                   // done with this line; jump to its end
+    if(++guard>200000) break;
+  }
+  const out=[];
+  for(const i of res.keys()){
+    const t=lineText(i), sep=t.indexOf(' :: ');
+    if(sep<0) continue;
+    const de=t.slice(0,sep).split(' | '), en=t.slice(sep+4).split(' | ');
+    let best=99; const rows=new Set();
+    for(const side of [de,en]) side.forEach((piece,k)=>{
+      const pl=piece.toLowerCase(); let x=-1;
+      while((x=pl.indexOf(ql,x+1))!==-1){ rows.add(k);
+        const semi=pl.indexOf('; '), first=semi<0||x<semi;          // match sits in the first item of the line
+        const sc=tierOf(pl,x,ql)*4+(k?2:0)+(first?0:1); if(sc<best) best=sc; }
+    });
+    if(best===99) continue;          // match only spanned a separator
+    out.push({i,de,en,best,rows,len:de[0].length+en[0].length,pos:posClass(de[0])});
+  }
+  out.sort((a,b)=>a.best-b.best||a.len-b.len||a.i-b.i);
+  return out;
+}
+
+// ---------- render ----------
+function markup(piece,ql){
+  const pl=piece.toLowerCase(); let h='',p=0,x=-1;
+  if(ql) while((x=pl.indexOf(ql,p))!==-1){ h+=esc(piece.slice(p,x))+'<b>'+esc(piece.slice(x,x+ql.length))+'</b>'; p=x+ql.length; }
+  h+=esc(piece.slice(p));
+  return h.replace(/\{[^}<]{1,24}\}/g,m=>`<span class="g"${ABBR[m]?` title="${ABBR[m]}"`:''}>${m}</span>`)
+          .replace(/\[[^\]<]{1,24}\]/g,m=>`<span class="t"${ABBR[m]?` title="${ABBR[m]}"`:''}>${m}</span>`);
+}
+function rowsHTML(r,ql,n){
+  let h=`<tbody class="${n%2?'s2':'s1'}"><tr><td class="r">${markup(r.de[0],ql)}</td><td class="r">${markup(r.en[0],ql)}</td></tr>`;
+  for(let k=1;k<r.de.length;k++) if(r.rows.has(k)) h+=`<tr><td class="f">${markup(r.de[k],ql)}</td><td class="f">${markup(r.en[k],ql)}</td></tr>`;
+  return h+'</tbody>';
+}
+const POSN=[['n','Nouns'],['v','Verbs'],['a','Adjectives'],['d','Adverbs'],['o','Other']];
+let CUR={q:'',all:[],list:[],shown:0,pos:'all'};
+function render(q,pos){
+  const ql=q.toLowerCase().replace(/\s+/g,' ').trim();
+  if(CUR.q!==q){ CUR={q,all:search(q),list:[],shown:0,pos:'all'}; }
+  CUR.pos=pos||'all';
+  CUR.list=CUR.pos==='all'?CUR.all:CUR.all.filter(r=>r.pos===CUR.pos);
+  CUR.shown=Math.min(PAGE,CUR.list.length);
+  const cnt={}; for(const r of CUR.all) cnt[r.pos]=(cnt[r.pos]||0)+1;
+  const rows=CUR.all.reduce((s,r)=>s+r.rows.size,0);
+  let h=`<div class="info"><span class="count">${CUR.all.length.toLocaleString()} entr${CUR.all.length===1?'y':'ies'} (${rows.toLocaleString()} lines) for „${esc(q)}“</span>`;
+  if(CUR.all.length) h+=`<span id="pos">Show: <a href="#" data-pos="all" class="${CUR.pos==='all'?'on':''}">All</a>`+
+     POSN.filter(([k])=>cnt[k]).map(([k,l])=>`<a href="#" data-pos="${k}" class="${CUR.pos===k?'on':''}">${l} <span>${cnt[k]}</span></a>`).join('')+'</span>';
+  h+='</div>';
+  if(!CUR.all.length){ h+='<p class="note">No matches.</p>'; $('#out').innerHTML=h; return; }
+  h+='<table id="result"><thead><tr><th>German</th><th>English</th></tr></thead>'+CUR.list.slice(0,CUR.shown).map((r,n)=>rowsHTML(r,ql,n)).join('')+'</table>';
+  if(CUR.shown<CUR.list.length) h+=`<button class="btn more" id="more">more results (${(CUR.list.length-CUR.shown).toLocaleString()} left)</button>`;
+  $('#out').innerHTML=h;
+}
+function more(){
+  const ql=CUR.q.toLowerCase().replace(/\s+/g,' ').trim();
+  const next=Math.min(CUR.shown+PAGE,CUR.list.length);
+  $('#result').insertAdjacentHTML('beforeend',CUR.list.slice(CUR.shown,next).map((r,n)=>rowsHTML(r,ql,CUR.shown+n)).join(''));
+  CUR.shown=next;
+  const b=$('#more'); if(CUR.shown>=CUR.list.length) b.remove(); else b.textContent=`more results (${(CUR.list.length-CUR.shown).toLocaleString()} left)`;
+}
+function home(){
+  document.title='BEOLINGUS · German ↔ English';
+  $('#out').innerHTML=`<div class="note"><p>Type a German or English word or phrase and press Enter. Matches in both languages are listed; exact matches come first, then whole words, then words that begin with the term, then words that contain it.</p>
+<p>Click any word in the results to look it up. <b>Esc</b> clears the search box; the browser's Back button returns to earlier searches.</p></div>`;
+}
+
+// ---------- routing ----------
+function route(){
+  const h=decodeURIComponent(location.hash.slice(1));
+  const q=h.startsWith('q=')?h.slice(2):'';
+  $('#query').value=q;
+  if(!q.trim()){ CUR={q:'',all:[],list:[],shown:0,pos:'all'}; home(); return; }
+  document.title=q+' · BEOLINGUS';
+  render(q,'all'); window.scrollTo(0,0);
+}
+function go(q){ q=q.trim(); const h=q?'#q='+encodeURIComponent(q):''; if(location.hash===h||(!h&&!location.hash)) route(); else location.hash=h; }
+
+$('#f').addEventListener('submit',ev=>{ ev.preventDefault(); go($('#query').value); });
+$('#clear').addEventListener('click',()=>{ $('#query').value=''; $('#query').focus(); });
+document.querySelectorAll('.uml button').forEach(b=>b.addEventListener('click',()=>{
+  const el=$('#query'), s=el.selectionStart??el.value.length, e=el.selectionEnd??s;
+  el.value=el.value.slice(0,s)+b.textContent+el.value.slice(e); el.focus(); el.setSelectionRange(s+1,s+1);
+}));
+document.addEventListener('keydown',ev=>{
+  if(ev.key==='Escape'){ $('#query').value=''; $('#query').focus(); }
+  else if(ev.key==='/'&&document.activeElement!==$('#query')){ ev.preventDefault(); $('#query').focus(); $('#query').select(); }
+});
+document.querySelector('.logo')?.addEventListener('click',ev=>{ ev.preventDefault(); go(''); });
+$('#out').addEventListener('click',ev=>{
+  const pa=ev.target.closest('#pos a'); if(pa){ ev.preventDefault(); render(CUR.q,pa.dataset.pos); return; }
+  if(ev.target.id==='more'){ more(); return; }
+  const td=ev.target.closest('td.r,td.f'); if(!td) return;
+  const sel=window.getSelection(); if(sel&&!sel.isCollapsed) return;        // let people select text to copy
+  let node,off;
+  if(document.caretPositionFromPoint){ const c=document.caretPositionFromPoint(ev.clientX,ev.clientY); if(c){node=c.offsetNode;off=c.offset;} }
+  else if(document.caretRangeFromPoint){ const c=document.caretRangeFromPoint(ev.clientX,ev.clientY); if(c){node=c.startContainer;off=c.startOffset;} }
+  if(!node||node.nodeType!==3) return;
+  const t=node.textContent; let a=off,b=off;
+  while(a>0&&/[\p{L}\p{N}'’-]/u.test(t[a-1])) a--;
+  while(b<t.length&&/[\p{L}\p{N}'’-]/u.test(t[b])) b++;
+  // the word may continue across a <b> highlight boundary
+  let w=t.slice(a,b);
+  const prev=a===0?node.previousSibling:null, next=b===t.length?node.nextSibling:null;
+  const tail=s=>(s.match(/[\p{L}\p{N}'’-]+$/u)||[''])[0], head=s=>(s.match(/^[\p{L}\p{N}'’-]+/u)||[''])[0];
+  if(prev) w=tail(prev.textContent)+w; if(next) w+=head(next.textContent);
+  if(node.parentNode.tagName==='B'){ const pp=node.parentNode.previousSibling, nn=node.parentNode.nextSibling;
+    if(a===0&&pp) w=tail(pp.textContent)+w; if(b===t.length&&nn) w+=head(nn.textContent); }
+  w=w.replace(/^['’-]+|['’-]+$/g,'');
+  if(w) go(w);
+});
+
+if(typeof window.BEOLINGUS_DATA==='string'){ const d=window.BEOLINGUS_DATA; window.BEOLINGUS_DATA=null; init(d); }
+else noData();
+</script>
+</body>
+</html>
