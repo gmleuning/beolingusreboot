@@ -68,3 +68,7 @@ branch `main`, folder `/ (root)`, **Save**. The site goes live a minute or two l
 Dictionary data: **BEOLINGUS / Ding**, © Frank Richter, TU Chemnitz, 1995–2026, released under the
 GNU General Public License, version 2 or later. See https://dict.zero-g.net/. The copyright header
 at the top of the word list must stay in place.
+
+The page and build script in this repository are released under the same licence, the
+**GNU General Public License, version 2 or (at your option) any later version**. The full text is in
+[LICENSE](LICENSE).
