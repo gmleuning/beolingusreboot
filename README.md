@@ -4,7 +4,7 @@ A single-page German–English dictionary that runs entirely in the browser, off
 It searches the full BEOLINGUS / Ding word list from TU Chemnitz: about 414,500 entries and over
 a million one-to-one translations.
 
-**Live page:** `https://<your-username>.github.io/<repo-name>/` (once GitHub Pages is switched on, see below)
+**Live page:** https://gmleuning.github.io/beolingusreboot/ (once GitHub Pages is switched on, see below)
 
 ## Features
 
